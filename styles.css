@@ -1,0 +1,227 @@
+@keyframes changeGradient {
+    0% { background-position: 0% 50%; } /* Início: posição inicial do gradiente */
+    100% { background-position: 100% 50%; } /* Fim: posição final do gradiente */
+}
+
+@font-face {
+    font-family: game;
+    src: url('fontes/gameplay/Gameplay.ttf');
+}
+
+/* Estilo geral da página */
+body {
+    font-family: "game";
+    font-size: 19px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #F2F2F2; 
+
+.container {
+    display: flex;
+    width: 100vh;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to bottom, #ff009d, #b72885b6); /* Gradiente rosa */
+    animation: changeGradient 30s ease infinite;
+}
+
+/* Container principal do jogo */
+.game-container {
+    text-align: center;
+    background-color: #342142a0;
+    padding: 40px;
+    border-radius: 100px;
+    box-shadow: 0 0 30px rgb(255, 255, 255);
+    width: 90%;
+    max-width: 800px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative; /* Adicionando posição relativa */
+    overflow: hidden; /* Para evitar que a sombra ultrapasse os limites do container */
+}
+
+.game-container::before {
+    content: '';
+    position: absolute;
+    top: -20px; /* Ajuste para a posição da borda */
+    left: -20px; /* Ajuste para a posição da borda */
+    right: -20px; /* Ajuste para a posição da borda */
+    bottom: -20px; /* Ajuste para a posição da borda */
+    border-radius: 100px; /* Mesmo valor do border-radius do game-container */
+    box-shadow: 0 0 50px 20px rgba(193, 165, 233, 0.8); /* Efeito de borda neon */
+    z-index: -1; /* Coloca a borda atrás do container */
+}
+
+.game-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.7);
+}
+
+/* Estilo do título */
+h1 {
+    color: #C9ACF2;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+/* Estilo do seletor de tema */
+.theme-selector {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.theme-selector label {
+    margin-bottom: 10px;
+}
+
+/* Estilo do seletor de opções */
+select.styled-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #ff1a9493;
+    border: 3px solid #ff1a9493;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 16px;
+    color: #F2F2F2;
+    cursor: pointer;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 300px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23F2F2F2" d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 24px;
+}
+
+select.styled-select:focus {
+    border-color: #ff1a9493;
+    box-shadow: 0 0 5px rgba(201, 172, 242, 0.5);
+    outline: none;
+}
+
+/* Estilo do botão iniciar */
+button {
+    padding: 10px 20px;
+    background-color: #ff0088c3;
+    color: #F2F2F2;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    width: 100%;
+    max-width: 220px;
+}
+
+button:hover {
+    background-color: #ff1a9493;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo do tabuleiro do jogo */
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilo das cartas */
+.card {
+    width: 100px; /* Largura do card */
+    height: 100px; /* Altura do card */
+    border-radius: 15px;
+    display: inline-block; /* Exibir como bloco */
+    margin: 5px; /* Margem entre os cards */
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+    cursor: pointer; /* Cursor de mão ao passar por cima */
+    position: relative; /* Posição relativa para sobrepor a imagem */
+    background-color: #ff20aa;
+}
+
+.card .card-image {
+    width: 100px; /* Tamanho completo da imagem */
+    height: 100px; /* Tamanho completo da imagem */
+    position: absolute; /* Posição absoluta para sobrepor */
+    top: 0; /* Alinhar ao topo */
+    left: 0; /* Alinhar à esquerda */
+    display: none; /* Esconder a imagem por padrão */
+}
+
+.card.flipped .card-image {
+    display: block; /* Mostrar a imagem quando o card estiver virado */
+}
+
+.card span {
+    font-size: 2em;
+    display: none;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+    background-color: #ff008898;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card.flipped span {
+    display: block;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.styled-select {
+    /* Seu estilo atual para o select */
+
+    /* Escondendo a seta padrão do select */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Adicionando uma imagem como seta personalizada */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23F2F2F2" d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 24px;
+    /* Adicionando bordas arredondadas */
+    border-radius: 20px;
+    /* Alterando a altura das opções para se ajustarem à borda arredondada */
+    padding: 10px 20px;
+    /* Adicionando um fundo para as opções */
+    background-color: #ff1a9493;
+    /* Alterando a cor do texto das opções */
+    color: #F2F2F2;
+}
+
+/* Estilizando as opções */
+.styled-select option {
+    /* Adicionando bordas arredondadas */
+    border-radius: 10px;
+    /* Adicionando um fundo */
+    background-color: #ff1a9493;
+    /* Alterando a cor do texto */
+    color: #F2F2F2;
+}
+
+/* Estilizando o select quando em foco */
+.styled-select:focus {
+    /* Adicionando uma borda de destaque */
+    border-color: #ff1a9493;
+    /* Adicionando uma sombra de foco */
+    box-shadow: 0 0 5px rgba(201, 172, 242, 0.5);
+}

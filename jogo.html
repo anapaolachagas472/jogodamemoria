@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Memória</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Honk&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="game-container">
+            <h1>Jogo da Memoria</h1>
+            <div class="theme-selector">
+                <label for="theme">Escolha um tema:</label>
+                <select id="theme" class="styled-select">
+                    <option value="animals">Animais</option>
+                
+                  
+                </select>
+                <button id="start-button">Iniciar Jogo</button>
+            </div>
+            <div id="game-board" class="game-board"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
